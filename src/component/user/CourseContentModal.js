@@ -19,7 +19,7 @@ const CourseContentModal = (props) => {
             <Modal.Body>
                 <div className="container">
                     <div className="row mt-4">
-                        <div className="col-5 d-flex justify-content-center">
+                        <div className="col-6 d-flex justify-content-center">
                             <div className="w-75">
                                 <img src={CourseImage}
                                     className="object-fit-cover rounded"
@@ -29,9 +29,19 @@ const CourseContentModal = (props) => {
                                     }}
                                     alt="course"
                                 />
+                                <p className="text-center mt-4">スポーツテーマ</p>
                             </div>
                         </div>
-                        <div className="col-7"></div>
+                        <div className="col-6">
+                            <textarea className="w-100 border-0" style={{ outline: 'none', overflow: 'auto', height: '200px'}}>
+                                パスワードを入力画面のボディー：
+                                ー　ログインするためユーザ名とパスワードが必要
+                                ー　新しいパスワードを入力するフィールド
+                                ー　新しいパスワードをもう一度入力するフィールド
+                                ー　リセットのボタンをクリックするログイン画面に遷移する
+                                ー　バックのボタンをクリックするとぐホームページに遷移する
+                            </textarea>
+                        </div>
                     </div>
                 </div>
             </Modal.Body>
