@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import CourseImage from '../../assets/course.jpg';
@@ -33,7 +34,17 @@ const CourseContentModal = (props) => {
                             </div>
                         </div>
                         <div className="col-6">
-                            <textarea className="w-100 border-0" style={{ outline: 'none', overflow: 'auto', height: '200px'}}>
+                            <textarea
+                                className="w-100 border-0"
+                                style={{
+                                    outline: 'none',
+                                    overflow: 'auto',
+                                    height: '200px',
+                                    resize: 'none',
+                                    backgroundColor: '#fff'
+                                }}
+                                disabled
+                            >
                                 パスワードを入力画面のボディー：
                                 ー　ログインするためユーザ名とパスワードが必要
                                 ー　新しいパスワードを入力するフィールド
@@ -47,7 +58,9 @@ const CourseContentModal = (props) => {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={props.onHide}>キャンセル</Button>
-                <Button variant="primary">オッケー</Button>
+                <Link to="/course/id">
+                    <Button variant="primary">オッケー</Button>
+                </Link>
             </Modal.Footer>
         </Modal>
     )

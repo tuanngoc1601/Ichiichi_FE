@@ -50,6 +50,18 @@
 
   color: #959895;
 }
+a {
+  text-decoration: none;
+}
+.list-word {
+    height: 450px;
+}
+.word-meaning {
+    height: 100px;
+}
+.list-video {
+    height: 350px;
+}
 .MuiPaginationItem-root {
   color: "#EA6A12";
   font-family: "Poppins";
