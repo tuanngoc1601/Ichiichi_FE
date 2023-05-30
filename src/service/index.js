@@ -1,0 +1,1 @@
+export * as courseService from './courseService';

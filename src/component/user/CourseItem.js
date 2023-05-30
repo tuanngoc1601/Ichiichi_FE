@@ -1,15 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import CourseImage from '../../assets/course.jpg';
 
 const CourseItem = (props) => {
+    const handleOpenModal = () => {
+        props.setModalShow(true);
+        props.setTitle(props.title);
+        props.setImage(props.image);
+        props.setDescription(props.description);
+    }
+    
     return (
         <div
             className="my-4"
             style={{ width: '250px' }}
         >
             <div>
-                <img src={CourseImage}
+                <img src={props.image}
                     className="object-fit-cover rounded"
                     style={{
                         height: '160px',
@@ -19,11 +24,11 @@ const CourseItem = (props) => {
                 />
             </div>
             <div className="my-1">
-                <p className="fs-5 mb-2">スポーツテーマ</p>
+                <p className="fs-5 mb-2">{props.title}</p>
                 <button
                     type="button"
                     className="btn btn-primary"
-                    onClick={() => props.setModalShow(true)}
+                    onClick={() => handleOpenModal()}
                 >
                     詳細
                 </button>

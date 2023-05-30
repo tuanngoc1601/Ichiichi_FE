@@ -62,6 +62,9 @@ a {
 .list-video {
     height: 350px;
 }
+.video-detail {
+    height: 270px;
+}
 .MuiPaginationItem-root {
   color: "#EA6A12";
   font-family: "Poppins";

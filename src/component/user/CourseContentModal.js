@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import CourseImage from '../../assets/course.jpg';
 
 const CourseContentModal = (props) => {
     return (
@@ -22,7 +21,7 @@ const CourseContentModal = (props) => {
                     <div className="row mt-4">
                         <div className="col-6 d-flex justify-content-center">
                             <div className="w-75">
-                                <img src={CourseImage}
+                                <img src={props.image}
                                     className="object-fit-cover rounded"
                                     style={{
                                         height: '160px',
@@ -30,7 +29,7 @@ const CourseContentModal = (props) => {
                                     }}
                                     alt="course"
                                 />
-                                <p className="text-center mt-4">スポーツテーマ</p>
+                                <p className="text-center mt-4">{props.title}</p>
                             </div>
                         </div>
                         <div className="col-6">
@@ -45,12 +44,7 @@ const CourseContentModal = (props) => {
                                 }}
                                 disabled
                             >
-                                パスワードを入力画面のボディー：
-                                ー　ログインするためユーザ名とパスワードが必要
-                                ー　新しいパスワードを入力するフィールド
-                                ー　新しいパスワードをもう一度入力するフィールド
-                                ー　リセットのボタンをクリックするログイン画面に遷移する
-                                ー　バックのボタンをクリックするとぐホームページに遷移する
+                                {props.description}
                             </textarea>
                         </div>
                     </div>
