@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import courseReducer from "./courseSlide";
+import wordSlide from "./wordSlide";
 
 export default configureStore({
     reducer: {
-        courses: courseReducer
+        courses: courseReducer,
+        word: wordSlide
     }
 })

@@ -35,8 +35,8 @@ function App() {
                         <Route path="/sign-up" element={<FormSignUp />} />
                         <Route exact path="/reset-password" element={<ResetPassword />} />
                         <Route path="/reset-password/update" element={<UpdatePassword />} />
-                        <Route exact path="/course/id" element={<CourseContent />} />
-                        <Route path="/course/id/content" element={<ContentDetailCourse />} />
+                        <Route exact path="/course/:id" element={<CourseContent />} />
+                        <Route path="/course/:id/:wordId/content" element={<ContentDetailCourse />} />
                     </Routes>
                 </div>
             </div>

@@ -3,6 +3,7 @@ import React from 'react';
 const CourseItem = (props) => {
     const handleOpenModal = () => {
         props.setModalShow(true);
+        props.setId(props.id);
         props.setTitle(props.title);
         props.setImage(props.image);
         props.setDescription(props.description);

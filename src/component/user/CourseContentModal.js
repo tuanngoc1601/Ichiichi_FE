@@ -52,7 +52,7 @@ const CourseContentModal = (props) => {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={props.onHide}>キャンセル</Button>
-                <Link to="/course/id">
+                <Link to={`/course/${props.id}`}>
                     <Button variant="primary">オッケー</Button>
                 </Link>
             </Modal.Footer>
