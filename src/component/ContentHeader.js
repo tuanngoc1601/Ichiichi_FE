@@ -19,7 +19,12 @@ const ContentHeader = () => {
                     <span className="fw-bold fs-5 ms-4">ベトナム簡単語</span>
                 </div>
                 <div className="d-flex align-items-center justify-content-end col-9">
-                    <i className="fas fa-user fs-3 mx-3"></i>
+                    <img
+                        src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                        className="rounded-circle mx-3"
+                        style={{ width: '40px' }}
+                        alt="Avatar"
+                    />
                     <span className="fs-5 mx-3">Rin</span>
                     <span><i className="fas fa-sort-down fs-3 mx-3"></i></span>
                 </div>
