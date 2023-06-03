@@ -1,4 +1,11 @@
-import { getCourseStart, getCourseError, getCourseSuccess } from './courseSlide';
+import { 
+    getCourseStart, 
+    getCourseError, 
+    getCourseSuccess, 
+    getCourseSearchStart, 
+    getCourseSearchError, 
+    getCourseSearchSuccess 
+} from './courseSlide';
 import { getWordByIdStart, getWordByIdError, getWordByIdSuccess } from './wordSlide';
 import { courseService } from '../service';
 
@@ -19,5 +26,15 @@ export const getWordById = async (id, dispatch) => {
         dispatch(getWordByIdSuccess(res.data));
     } catch (e) {
         dispatch(getWordByIdError());
+    }
+}
+
+export const getSearchCourse = async (data, dispatch) => {
+    dispatch(getCourseSearchStart());
+    try {
+        const res = await courseService.getSearchCouseServices(data);
+        dispatch(getCourseSearchSuccess(res.data));
+    } catch (e) {
+        dispatch(getCourseSearchError());
     }
 }

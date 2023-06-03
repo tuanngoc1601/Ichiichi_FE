@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { courseService } from '../../service';
+import ContentHeader from '../../component/ContentHeader';
 import CourseNavigate from '../../component/user/CourseNavigate';
 import CourseContentList from '../../component/user/CourseContentList';
 
@@ -19,13 +20,18 @@ const CourseContent = () => {
     }, []);
 
     return (
-        <div className="w-75 mx-auto">
-            <CourseNavigate />
-            <CourseContentList 
-                listWords={listWords} 
-                course_id={id}
-            />
-        </div>
+        <>
+            <ContentHeader />
+            <div className="container">
+                <div className="w-75 mx-auto">
+                    <CourseNavigate />
+                    <CourseContentList
+                        listWords={listWords}
+                        course_id={id}
+                    />
+                </div>
+            </div>
+        </>
     )
 }
 

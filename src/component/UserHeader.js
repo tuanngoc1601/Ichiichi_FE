@@ -1,7 +1,20 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import Logo from '../assets/logo_app.png';
+import { getSearchCourse } from '../redux/apiRequests';
 
-const UserHeader = () => {
+const UserHeader = (props) => {
+    const dispatch = useDispatch();
+
+    const handleOnChangeSearch = (e) => {
+        props.setSearchTerm(e.target.value);
+    }
+
+    const handleSubmitSearchCourse = () => {
+        let data = { searchTerm: props.searchTerm };
+        getSearchCourse(data, dispatch);
+    }
+
     return (
         <div className="px-5 border border-1" style={{ height: '100px' }}>
             <div className="row d-flex align-items-center px-5">
@@ -19,10 +32,22 @@ const UserHeader = () => {
                     <span className="fw-bold fs-5 ms-4">ベトナム簡単語</span>
                 </div>
                 <div className="form-group col-5">
-                    <input type="text" placeholder="コース検索" className="form-control" />
+                    <input 
+                        type="text" 
+                        placeholder="コース検索" 
+                        className="form-control" 
+                        value={props.searchTerm}
+                        onChange={(e) => handleOnChangeSearch(e)}
+                    />
                 </div>
                 <div className="button-group d-flex justify-content-around col-2">
-                    <button type="button" className="btn btn-secondary">検索</button>
+                    <button 
+                        type="button" 
+                        className="btn btn-secondary"
+                        onClick={() => handleSubmitSearchCourse()}
+                    >
+                        検索
+                    </button>
                     <button type="button" className="btn btn-primary ms-5">復習</button>
                 </div>
                 <div className="d-flex align-items-center justify-content-around col-2">

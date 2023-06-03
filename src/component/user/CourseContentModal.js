@@ -43,9 +43,8 @@ const CourseContentModal = (props) => {
                                     backgroundColor: '#fff'
                                 }}
                                 disabled
-                            >
-                                {props.description}
-                            </textarea>
+                                value={props.description}
+                            />
                         </div>
                     </div>
                 </div>
