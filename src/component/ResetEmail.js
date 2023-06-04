@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const ResetPassword = () => {
+const ResetEmail = () => {
     const navigate = useNavigate();
 
     return (
@@ -39,4 +39,4 @@ const ResetPassword = () => {
     )
 }
 
-export default ResetPassword
+export default ResetEmail

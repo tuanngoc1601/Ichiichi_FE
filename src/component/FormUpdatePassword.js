@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const UpdatePassword = () => {
+const FormUpdatePassword = () => {
     const navigate = useNavigate();
 
     return (
@@ -49,4 +49,4 @@ const UpdatePassword = () => {
     )
 }
 
-export default UpdatePassword
+export default FormUpdatePassword

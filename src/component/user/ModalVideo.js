@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Video from '../../assets/video.mp4';
@@ -51,16 +50,11 @@ const ModalVideo = (props) => {
                             </div>
                         </div>
                     </div>
-                    <div className="row">
-
-                    </div>
                 </div>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={props.onHide}>キャンセル</Button>
-                <Link to="/course/id/content">
-                    <Button variant="primary">オッケー</Button>
-                </Link>
+                <Button variant="primary" onClick={props.onHide}>オッケー</Button>
             </Modal.Footer>
         </Modal>
     )
