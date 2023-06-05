@@ -8,14 +8,14 @@ const FormLogin = () => {
             <form className="mt-4">
                 <div className="row my-5">
                     <div className="form-group d-flex align-items-center">
-                        <label for="username" className="form-label m-0" style={{ width: "20%" }}>ユーザー名</label>
+                        <label htmlFor="username" className="form-label m-0" style={{ width: "20%" }}>ユーザー名</label>
                         <input type="text" className="form-control" id="username" />
                     </div>
                 </div>
 
                 <div className="row my-5">
                     <div className="form-group d-flex align-items-center">
-                        <label for="password" className="form-label m-0" style={{ width: "20%" }}>パスワード</label>
+                        <label htmlFor="password" className="form-label m-0" style={{ width: "20%" }}>パスワード</label>
                         <input type="password" className="form-control" id="password" />
                     </div>
                 </div>

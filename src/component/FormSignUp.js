@@ -1,6 +1,8 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../fire_base';
 
 const FormSignUp = () => {
     const [userInfo, setUserInfo] = useState({
@@ -51,12 +53,33 @@ const FormSignUp = () => {
         return newError;
     }
 
+    const registerWithEmailAndPassword = async (userInfo) => {
+        try {
+            await createUserWithEmailAndPassword(auth, userInfo.email, userInfo.password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log(user);
+                })
+                .catch((error) => {
+                    // Xảy ra lỗi trong quá trình tạo người dùng hoặc cập nhật thông tin
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log("Error:", errorCode, errorMessage);
+                });
+            // const userRegister = res.user;
+            // console.log(userRegister);
+        } catch (err) {
+            console.error(err);
+            alert(err.message);
+        }
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const newErrors = validateFormSignUp();
         if (Object.keys(newErrors).length > 0) setErrors(newErrors);
         else {
-            console.log(userInfo);
+            registerWithEmailAndPassword(userInfo);
         }
     }
 
@@ -147,9 +170,9 @@ const FormSignUp = () => {
                 <div className="row my-4">
                     <Form.Group className="row d-flex align-items-center">
                         <Form.Label className="w-25 m-0 text-end">イメージ</Form.Label>
-                        <div className="w-75 d-flex align-items-center">
-                            <Form.Label htmlFor="image" className="py-2 rounded m-0" style={{ width: "15%", backgroundColor: "#ddd" }}>
-                                <i className="fas fa-upload"></i>
+                        <div className="w-75 d-flex align-items-center px-0">
+                            <Form.Label htmlFor="image" type="button" className="py-2 rounded m-0 w-25 bg-secondary">
+                                <i className="fas fa-upload text-white"></i>
                             </Form.Label>
                             <Form.Control
                                 type="file"

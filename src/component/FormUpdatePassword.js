@@ -10,19 +10,19 @@ const FormUpdatePassword = () => {
             <form className="mt-4">
                 <div className="row my-5">
                     <div className="form-group d-flex align-items-center">
-                        <label for="name" className="form-label m-0 text-end me-3" style={{ width: "35%" }}>ユーザー名</label>
+                        <label htmlFor="name" className="form-label m-0 text-end me-3" style={{ width: "35%" }}>ユーザー名</label>
                         <input type="text" className="form-control" id="name" value="Ngoc" disabled/>
                     </div>
                 </div>
                 <div className="row my-5">
                     <div className="form-group d-flex align-items-center ">
-                        <label for="password" className="form-label m-0 text-end me-3" style={{ width: "35%" }}>新しいパスワード</label>
+                        <label htmlFor="password" className="form-label m-0 text-end me-3" style={{ width: "35%" }}>新しいパスワード</label>
                         <input type="password" className="form-control" id="password" />
                     </div>
                 </div>
                 <div className="row my-5">
                     <div className="form-group d-flex align-items-center">
-                        <label for="password" className="form-label m-0 text-end me-3" style={{ width: "35%" }}>パスワード再度入力</label>
+                        <label htmlFor="password" className="form-label m-0 text-end me-3" style={{ width: "35%" }}>パスワード再度入力</label>
                         <input type="password" className="form-control" id="password" />
                     </div>
                 </div>
