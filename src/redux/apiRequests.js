@@ -1,12 +1,13 @@
-import { 
-    getCourseStart, 
-    getCourseError, 
-    getCourseSuccess, 
-    getCourseSearchStart, 
-    getCourseSearchError, 
-    getCourseSearchSuccess 
+import {
+    getCourseStart,
+    getCourseError,
+    getCourseSuccess,
+    getCourseSearchStart,
+    getCourseSearchError,
+    getCourseSearchSuccess
 } from './courseSlide';
 import { getWordByIdStart, getWordByIdError, getWordByIdSuccess } from './wordSlide';
+import { getAllVideosOfWordStart, getAllVideosOfWordError, getAllVideosOfWordSuccess } from './videoSlide';
 import { courseService } from '../service';
 
 export const getAllCourses = async (dispatch) => {
@@ -36,5 +37,15 @@ export const getSearchCourse = async (data, dispatch) => {
         dispatch(getCourseSearchSuccess(res.data));
     } catch (e) {
         dispatch(getCourseSearchError());
+    }
+}
+
+export const getAllVideoDetails = async (content_id, dispatch) => {
+    dispatch(getAllVideosOfWordStart());
+    try {
+        const res = await courseService.getAllVideosOfWordService(content_id);
+        dispatch(getAllVideosOfWordSuccess(res.data));
+    } catch (e) {
+        dispatch(getAllVideosOfWordError());
     }
 }

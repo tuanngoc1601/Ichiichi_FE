@@ -15,3 +15,7 @@ export const getAllWords = (course_id) => {
 export const getWordByIdService = (id) => {
     return axios.get(`/api/get-word?id=${id}`);
 }
+
+export const getAllVideosOfWordService = (content_id) => {
+    return axios.get(`/api/get-content?content_id=${content_id}`);
+}

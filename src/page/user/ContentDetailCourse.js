@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getWordById } from '../../redux/apiRequests';
+import { getWordById, getAllVideoDetails } from '../../redux/apiRequests';
 import ContentHeader from '../../component/ContentHeader';
 import WordMeaning from '../../component/user/WordMeaning';
 import ListVideoContent from '../../component/user/ListVideoContent';
@@ -12,16 +12,23 @@ const ContentDetailCourse = () => {
     const { id, wordId } = useParams();
     const [modalShow, setModalShow] = useState(false);
     const wordRedux = useSelector((state) => state.word.word);
+    const videosOfWordRedux = useSelector((state) => state.videos.videos);
     const dispatch = useDispatch();
+    const [wordContent, setWordContent] = useState(wordRedux.content);
     const [meaning, setMeaning] = useState(wordRedux.mean);
+    const [listVideoOfWord, setListVideoOfWord] = useState(videosOfWordRedux);
+    const [videoModal, setVideoModal] = useState({});
 
     useEffect(() => {
         getWordById(wordId, dispatch);
+        getAllVideoDetails(wordId, dispatch);
     }, []);
 
     useEffect(() => {
         setMeaning(wordRedux.mean);
-    }, [wordRedux]);
+        setWordContent(wordRedux.content);
+        setListVideoOfWord(videosOfWordRedux);
+    }, [wordRedux, videosOfWordRedux]);
 
     return (
         <>
@@ -31,12 +38,18 @@ const ContentDetailCourse = () => {
                     <ModalVideo
                         show={modalShow}
                         onHide={() => setModalShow(false)}
+                        content={wordContent}
+                        video={videoModal}
                     />
                     <WordMeaning
                         course_id={id}
                         meaning={meaning}
                     />
-                    <ListVideoContent setModalShow={setModalShow} />
+                    <ListVideoContent 
+                        setModalShow={setModalShow} 
+                        listVideoOfWord={listVideoOfWord}
+                        setVideoModal={setVideoModal}
+                    />
                 </div>
             </div>
         </>

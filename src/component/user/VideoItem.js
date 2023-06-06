@@ -2,11 +2,16 @@ import React from 'react';
 import VideoImage from '../../assets/video_image.png';
 
 const VideoItem = (props) => {
+    const handleOpenModalVideo = () => {
+        props.setModalShow(true);
+        props.setVideoModal(props.video);
+    }
+
     return (
         <div style={{ width: '200px' }}>
             <div 
                 role="button"
-                onClick={() => props.setModalShow(true)}
+                onClick={() => handleOpenModalVideo()}
             >
                 <img src={VideoImage}
                     className="object-fit-cover rounded border border-1 border-secondary"
