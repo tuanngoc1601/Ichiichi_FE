@@ -7,12 +7,14 @@ import ContentHeader from '../../component/ContentHeader';
 import WordMeaning from '../../component/user/WordMeaning';
 import ListVideoContent from '../../component/user/ListVideoContent';
 import ModalVideo from '../../component/user/ModalVideo';
+import Loading from '../../component/Loading';
 
 const ContentDetailCourse = () => {
     const { id, wordId } = useParams();
     const [modalShow, setModalShow] = useState(false);
     const wordRedux = useSelector((state) => state.word.word);
     const videosOfWordRedux = useSelector((state) => state.videos.videos);
+    const pendding = useSelector((state) => state.videos.pendding);
     const dispatch = useDispatch();
     const [wordContent, setWordContent] = useState(wordRedux.content);
     const [meaning, setMeaning] = useState(wordRedux.mean);
@@ -29,6 +31,12 @@ const ContentDetailCourse = () => {
         setWordContent(wordRedux.content);
         setListVideoOfWord(videosOfWordRedux);
     }, [wordRedux, videosOfWordRedux]);
+
+    if(pendding) {
+        return (
+            <Loading />
+        )
+    }
 
     return (
         <>
