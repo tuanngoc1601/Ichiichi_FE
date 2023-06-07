@@ -2,6 +2,12 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+const NewLineText = (props) => {
+    const text = props.text;
+    const newText = text.split('\\n').map((str, index) => <p key={index}>{str}</p>);
+    return newText;
+}
+
 const ModalVideo = (props) => {
     return (
         <Modal
@@ -32,7 +38,7 @@ const ModalVideo = (props) => {
                             <div className="w-100 border border-1 border-secondary rounded overflow-auto shadow video-detail">
                                 <p className="text-center fs-5 m-0 py-2">説明</p>
                                 <div className="px-3 overflow-auto">
-                                    {props.video.description}
+                                    <NewLineText text={props.video.description} />
                                 </div>
                             </div>
                         </div>

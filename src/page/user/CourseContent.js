@@ -1,23 +1,33 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { courseService } from '../../service';
+import { getAllWords } from '../../redux/apiRequests';
+import { useSelector, useDispatch } from 'react-redux';
 import ContentHeader from '../../component/ContentHeader';
 import CourseNavigate from '../../component/user/CourseNavigate';
 import CourseContentList from '../../component/user/CourseContentList';
+import Loading from '../../component/Loading';
 
 const CourseContent = () => {
     const { id } = useParams();
-    const [listWords, setListWords] = useState([]);
-
-    const getdataWords = async (course_id) => {
-        let words = await courseService.getAllWords(course_id);
-        setListWords(words.data.allWords);
-    }
+    const dispatch = useDispatch();
+    const wordArrRedux = useSelector(state => state.word.wordArr);
+    const pendding = useSelector(state => state.word.pendding);
+    const [listWords, setListWords] = useState(wordArrRedux);
 
     useEffect(() => {
-        getdataWords(id);
+        getAllWords(id, dispatch);
     }, []);
+
+    useEffect(() => {
+        setListWords(wordArrRedux);
+    }, [wordArrRedux]);
+
+    if(pendding) {
+        return (
+            <Loading />
+        )
+    }
 
     return (
         <>
