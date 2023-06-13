@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import ReactPaginate from 'react-paginate';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllCourses } from '../../redux/apiRequests';
 import UserHeader from '../../component/UserHeader';
@@ -15,6 +16,9 @@ const UserHomePage = () => {
     const dispatch = useDispatch();
     const [courses, setCourses] = useState(courseRedux);
     const [searchTerm, setSearchTerm] = useState('');
+    const [currentPage, setCurrentPage] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
+    const itemsPerPage = 6;
     const [id, setId] = useState();
     const [title, setTitle] = useState('');
     const [image, setImage] = useState('');
@@ -26,19 +30,28 @@ const UserHomePage = () => {
 
     useEffect(() => {
         setCourses(courseRedux);
+        setTotalPages(Math.ceil(courses.length / itemsPerPage));
     }, [courseRedux, searchTerm]);
-    
+
     useEffect(() => {
         setCourses(searchCourseRedux);
     }, [searchCourseRedux]);
 
-    if(pendding) {
+    const startIndex = currentPage * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const subset = courses.slice(startIndex, endIndex);
+
+    const handlePageChange = (selectedPage) => {
+        setCurrentPage(selectedPage.selected);
+    };
+
+    if (pendding) {
         return (
             <Loading />
         )
     }
 
-    if(courses.length <= 0) {
+    if (courses.length <= 0) {
         return (
             <>
                 <UserHeader searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
@@ -58,10 +71,10 @@ const UserHomePage = () => {
                 description={description}
             />
             <UserHeader searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            <div className="container">
-                <div className="row row-cols-3 mt-2">
-                    {courses.length > 0 &&
-                        courses.map((course, index) => {
+            <div className="container position-relative">
+                <div className="row row-cols-3 mt-2"  style={{ minHeight: '550px' }}>
+                    {subset.length > 0 &&
+                        subset.map((course, index) => {
                             const { id, title, description, image } = course;
                             return (
                                 <div key={index} className="col d-flex justify-content-center">
@@ -77,6 +90,26 @@ const UserHomePage = () => {
                         })
                     }
                 </div>
+                <ReactPaginate
+                    nextLabel="next >"
+                    onPageChange={handlePageChange}
+                    pageRangeDisplayed={2}
+                    marginPagesDisplayed={2}
+                    pageCount={totalPages}
+                    previousLabel="< previous"
+                    pageClassName="page-item"
+                    pageLinkClassName="page-link"
+                    previousClassName="page-item"
+                    previousLinkClassName="page-link"
+                    nextClassName="page-item"
+                    nextLinkClassName="page-link"
+                    breakLabel="..."
+                    breakClassName="page-item"
+                    breakLinkClassName="page-link"
+                    containerClassName="pagination"
+                    activeClassName="active"
+                    renderOnZeroPageCount={null}
+                />
             </div>
         </>
     )

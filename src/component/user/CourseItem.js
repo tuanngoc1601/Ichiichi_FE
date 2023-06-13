@@ -11,7 +11,7 @@ const CourseItem = (props) => {
     
     return (
         <div
-            className="my-4"
+            className="my-3"
             style={{ width: '250px' }}
         >
             <div>

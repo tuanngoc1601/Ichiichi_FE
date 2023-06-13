@@ -32,6 +32,17 @@ code {
   animation: spin-anim 1.2s linear infinite;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  bottom: 0;
+}
+
+.pagination li {
+  display: block;
+}
+
 @keyframes spin-anim {
   0% {
     transform: rotate(0deg);
