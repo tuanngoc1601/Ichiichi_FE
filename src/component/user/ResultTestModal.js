@@ -16,7 +16,7 @@ const ResultTestModal = (props) => {
             size="md"
             aria-labelledby="contained-modal-title-vcenter"
             centered
-        // backdrop="static"
+            backdrop="static"
         >
             <Modal.Header
                 style={{
