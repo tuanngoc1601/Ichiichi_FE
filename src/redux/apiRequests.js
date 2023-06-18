@@ -14,8 +14,16 @@ import {
     getWordByIdError, 
     getWordByIdSuccess
 } from './wordSlide';
+import {
+    getAllQuestionStart, 
+    getAllQuestionError, 
+    getAllQuestionSuccess,
+    getQuestionStart,
+    getQuestionError,
+    getQuestionSuccess
+} from './testSlide';
 import { getAllVideosOfWordStart, getAllVideosOfWordError, getAllVideosOfWordSuccess } from './videoSlide';
-import { courseService } from '../service';
+import { courseService, testService } from '../service';
 
 export const getAllCourses = async (dispatch) => {
     dispatch(getCourseStart());
@@ -64,5 +72,25 @@ export const getAllVideoDetails = async (content_id, dispatch) => {
         dispatch(getAllVideosOfWordSuccess(res.data));
     } catch (e) {
         dispatch(getAllVideosOfWordError());
+    }
+}
+
+export const getAllQuestionCourse = async (id, dispatch) => {
+    dispatch(getAllQuestionStart());
+    try {
+        const res = await testService.getAllQuestionService(id);
+        dispatch(getAllQuestionSuccess(res.data));
+    } catch (e) {
+        dispatch(getAllQuestionError());
+    }
+}
+
+export const getQuestionById = async (id, dispatch) => {
+    dispatch(getQuestionStart());
+    try {
+        const res = await testService.getQuestionByIdService(id);
+        dispatch(getQuestionSuccess(res.data));
+    } catch (e) {
+        dispatch(getQuestionError());
     }
 }

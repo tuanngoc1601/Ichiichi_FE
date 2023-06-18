@@ -7,6 +7,7 @@ import SignUp from './page/SignUp';
 import ResetPassword from './page/ResetPassword';
 import CourseContent from './page/user/CourseContent';
 import ContentDetailCourse from './page/user/ContentDetailCourse';
+import CourseTest from './page/user/CourseTest';
 import './App.css';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
                     <Route path="/reset-password/update" element={<UpdatePassword />} />
                     <Route exact path="/course/:id" element={<CourseContent />} />
                     <Route path="/course/:id/:wordId/content" element={<ContentDetailCourse />} />
+                    <Route path="/course/:id/test" element={<CourseTest />} />
                 </Routes>
 
             </div>

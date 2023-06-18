@@ -43,6 +43,18 @@ code {
   display: block;
 }
 
+.bg-answer {
+    background-color: #A9CEC8;
+}
+
+.bg-correct-answer {
+    background-color: #20E757;
+}
+
+.bg-incorrect-answer {
+    background-color: #F21515;
+}
+
 @keyframes spin-anim {
   0% {
     transform: rotate(0deg);

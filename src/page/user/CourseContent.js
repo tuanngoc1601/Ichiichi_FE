@@ -34,7 +34,7 @@ const CourseContent = () => {
             <ContentHeader />
             <div className="container">
                 <div className="w-75 mx-auto">
-                    <CourseNavigate />
+                    <CourseNavigate id={id} />
                     <CourseContentList
                         listWords={listWords}
                         course_id={id}
