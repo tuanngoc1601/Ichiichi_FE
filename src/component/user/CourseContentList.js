@@ -16,7 +16,8 @@ const CourseContentList = (props) => {
                                 index={index}
                             />
                         )
-                    })}
+                    })
+                }
             </div>
         </div>
     )

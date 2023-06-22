@@ -118,6 +118,15 @@ const CourseTest = () => {
         )
     }
 
+    if(allQuestions.length === 0) {
+        return (
+            <>
+                <ContentHeader />
+                <h2 className="mt-5">このコースに関する質問は見つかりませんでした</h2>
+            </>
+        )
+    }
+
     return (
         <>
             <ContentHeader />

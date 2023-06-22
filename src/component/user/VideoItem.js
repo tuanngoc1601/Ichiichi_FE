@@ -23,7 +23,7 @@ const VideoItem = (props) => {
                 />
             </div>
             <div className="mt-1">
-                <p className="text-center">説明ビデオ</p>
+                <p className="text-center">{props.video.title}</p>
             </div>
         </div>
     )
