@@ -1,12 +1,13 @@
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllQuestionCourse, getQuestionById } from '../../redux/apiRequests';
+import { getAllRandomQuestionTest, getQuestionById } from '../../redux/apiRequests';
 import { testService } from '../../service';
 import ContentHeader from '../../component/ContentHeader';
 import ResultTestModal from '../../component/user/ResultTestModal';
 import Loading from '../../component/Loading';
+
 
 const NewLineText = (props) => {
     const text = props.text;
@@ -14,17 +15,17 @@ const NewLineText = (props) => {
     return newText;
 }
 
-const CourseTest = () => {
-    const { id } = useParams();
+const TestRandomQuestion = () => {
+    // const { id } = useParams();
     const dispatch = useDispatch();
     const scrollContainerRef = useRef(null);
     const [activeQuestion, setActiveQuestion] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState('');
     const [correctAnswer, setCorrectAnswer] = useState('');
-    const allQuestionRedux = useSelector(state => state.tests.allQuestions);
+    const allRandomQuestionRedux = useSelector(state => state.tests.allRandomQuestions);
     const questionRedux = useSelector(state => state.tests.question);
     const pendding = useSelector(state => state.tests.pendding);
-    const [allQuestions, setAllQuestions] = useState(allQuestionRedux);
+    const [allQuestions, setAllQuestions] = useState(allRandomQuestionRedux);
     const [question, setQuestion] = useState(questionRedux);
     const [answerIndex, setAnswerIndex] = useState(null);
     const [correctAnswerIndex, setCorrectAnswerIndex] = useState(null);
@@ -80,15 +81,13 @@ const CourseTest = () => {
                 setCorrectAnswer(true);
                 await testService.addResultQuestionService({
                     ...data,
-                    is_correct: true,
-                    answer: answer
+                    is_correct: true
                 })
             } else {
                 setCorrectAnswer(false);
                 await testService.addResultQuestionService({
                     ...data,
-                    is_correct: false,
-                    answer: answer
+                    is_correct: false
                 })
             }
             setCorrectAnswerIndex(listAnswer.answers.indexOf(correctAnswer.data.right_answer));
@@ -108,13 +107,13 @@ const CourseTest = () => {
     }
 
     useEffect(() => {
-        getAllQuestionCourse(id, dispatch);
+        getAllRandomQuestionTest(5, dispatch);
     }, []);
 
     useEffect(() => {
-        setAllQuestions(allQuestionRedux);
+        setAllQuestions(allRandomQuestionRedux);
         setQuestion(questionRedux);
-    }, [allQuestionRedux, questionRedux]);
+    }, [allRandomQuestionRedux, questionRedux]);
 
     useEffect(() => {
         getQuestionContent();
@@ -149,6 +148,8 @@ const CourseTest = () => {
         )
     }
 
+    console.log(question);
+
     return (
         <>
             <ContentHeader />
@@ -157,14 +158,13 @@ const CourseTest = () => {
                 onHide={() => setModalShow(false)}
                 result={result}
                 total_questions={allQuestions.length}
-                course_id={id}
-                type={"correct"}
+                type={"incorrect"}
             />
             <div className="container">
                 <div className="w-75 mx-auto">
                     <div className="row">
                         <div className="col-12 d-flex justify-content-start my-4">
-                            <Link to={`/course/${id}`}>
+                            <Link to="/">
                                 <button
                                     className="border-0 px-3 py-2 rounded"
                                     type="button"
@@ -234,4 +234,4 @@ const CourseTest = () => {
     )
 }
 
-export default CourseTest
+export default TestRandomQuestion

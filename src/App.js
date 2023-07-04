@@ -8,6 +8,9 @@ import ResetPassword from './page/ResetPassword';
 import CourseContent from './page/user/CourseContent';
 import ContentDetailCourse from './page/user/ContentDetailCourse';
 import CourseTest from './page/user/CourseTest';
+import TestResultPreview from './page/user/TestResultPreview';
+import TestIncorrectQuestion from './page/user/TestIncorrectQuestion';
+import TestRandomQuestion from './page/user/TestRandomQuestion';
 import './App.css';
 
 function App() {
@@ -30,7 +33,10 @@ function App() {
                     <Route path="/reset-password/update" element={<UpdatePassword />} />
                     <Route exact path="/course/:id" element={<CourseContent />} />
                     <Route path="/course/:id/:wordId/content" element={<ContentDetailCourse />} />
-                    <Route path="/course/:id/test" element={<CourseTest />} />
+                    <Route exact path="/course/:id/test" element={<CourseTest />} />
+                    <Route path="/course/:id/test/preview" element={<TestResultPreview />} />
+                    <Route path="/test-incorrect-question" element={<TestIncorrectQuestion />} />
+                    <Route path="/test-random" element={<TestRandomQuestion />} />
                 </Routes>
 
             </div>

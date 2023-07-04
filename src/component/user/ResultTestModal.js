@@ -1,12 +1,27 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { testService } from '../../service';
 import { useEffect } from 'react';
 
 const ResultTestModal = (props) => {
+    const navigate = useNavigate();
     const [passTest, setPassTest] = useState();
+    const submitResultTest = async () => {
+        if (props.type === 'correct') {
+            let data = {
+                user_id: 1,
+                course_id: props.course_id,
+                score: props.result.score
+            }
+            const response = await testService.updateTestScoreService(data);
+            console.log(response.data);
+        } else {
+            navigate("/");
+        }
+    }
     useEffect(() => {
         setPassTest(props.result.score >= (props.total_questions * 10 * 0.6));
     }, [props.show]);
@@ -65,19 +80,24 @@ const ResultTestModal = (props) => {
                         </div>
                         <div className="col-12 mt-3">
                             <div className="button-group d-flex justify-content-center">
-                                <Button
-                                    className="btn btn-primary text-body mx-4 border-0"
-                                    style={{ backgroundColor: '#A9CEC8' }}
-                                    onClick={() => window.location.reload(true)}
-                                >
-                                    もう一度
-                                </Button>
-                                <Link to={`/course/${props.course_id}`}>
+                                {props.type === 'correct' &&
+                                    <Link to={`/course/${props.course_id}/test/preview`}>
+                                        <Button
+                                            className="btn btn-primary text-body mx-4 border-0"
+                                            style={{ backgroundColor: '#A9CEC8' }}
+                                            onClick={() => submitResultTest()}
+                                        >
+                                            詳しく
+                                        </Button>
+                                    </Link>
+                                }
+                                <Link to={props.type === 'incorrect' ? '/' : `/course/${props.course_id}`}>
                                     <Button
                                         className="btn btn-primary text-body mx-4 border-0"
                                         style={{ backgroundColor: '#A9CEC8' }}
+                                        onClick={() => submitResultTest()}
                                     >
-                                        はい！
+                                        {passTest ? "はい！" : "いいよ！"}
                                     </Button>
                                 </Link>
                             </div>

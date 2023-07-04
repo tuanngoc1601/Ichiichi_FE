@@ -18,6 +18,7 @@ const ListVideoContent = (props) => {
                                                 setModalShow={props.setModalShow} 
                                                 setVideoModal={props.setVideoModal}
                                                 video={video}
+                                                videoWatched={props.videoWatched}
                                             />
                                         </div>
                                     )

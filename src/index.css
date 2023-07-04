@@ -44,15 +44,15 @@ code {
 }
 
 .bg-answer {
-    background-color: #A9CEC8;
+  background-color: #a9cec8;
 }
 
 .bg-correct-answer {
-    background-color: #20E757;
+  background-color: #20e757;
 }
 
 .bg-incorrect-answer {
-    background-color: #F21515;
+  background-color: #f21515;
 }
 
 @keyframes spin-anim {
@@ -62,4 +62,24 @@ code {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* CustomScroll.css */
+
+/* Hide the default scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Logo from '../assets/logo_app.png';
 import { getSearchCourse } from '../redux/apiRequests';
@@ -48,14 +49,25 @@ const UserHeader = (props) => {
                     >
                         検索
                     </button>
-                    <button type="button" className="btn btn-primary ms-5">復習</button>
+                    <div className="dropdown me-2">
+                        <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            復習
+                        </button>
+                        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            {/* <li><a className="dropdown-item" href="#">間違い質問</a></li> */}
+                            <li><Link to="/test-incorrect-question" className="dropdown-item">間違い質問</Link></li>
+                            <li><Link to="/test-random" className="dropdown-item">質問を復習</Link></li>
+                            {/* <li><a className="dropdown-item" href="#">質問を復習</a></li> */}
+                        </ul>
+                    </div>
+                    {/* <button type="button" className="btn btn-primary ms-5">復習</button> */}
                 </div>
                 <div className="d-flex align-items-center justify-content-around col-2">
-                    <img 
-                        src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" 
-                        className="rounded-circle" 
-                        style={{ width: '40px' }} 
-                        alt="Avatar" 
+                    <img
+                        src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                        className="rounded-circle"
+                        style={{ width: '40px' }}
+                        alt="Avatar"
                     />
                     <span className="fs-5">Rin</span>
                     <span><i className="fas fa-sort-down fs-3"></i></span>

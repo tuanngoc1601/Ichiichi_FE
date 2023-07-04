@@ -20,7 +20,13 @@ import {
     getAllQuestionSuccess,
     getQuestionStart,
     getQuestionError,
-    getQuestionSuccess
+    getQuestionSuccess,
+    getAllIncorrectQuestionStart,
+    getAllIncorrectQuestionError,
+    getAllIncorrectQuestionSuccess,
+    getAllRandomQuesitonStart,
+    getAllRandomQuesitonError,
+    getAllRandomQuesitonSuccess
 } from './testSlide';
 import { getAllVideosOfWordStart, getAllVideosOfWordError, getAllVideosOfWordSuccess } from './videoSlide';
 import { courseService, testService } from '../service';
@@ -92,5 +98,25 @@ export const getQuestionById = async (id, dispatch) => {
         dispatch(getQuestionSuccess(res.data));
     } catch (e) {
         dispatch(getQuestionError());
+    }
+}
+
+export const getAllIncorrectQuestionTest = async (limit, dispatch) => {
+    dispatch(getAllIncorrectQuestionStart());
+    try {
+        const res = await testService.getAllIncorrectQuestionTestService(limit);
+        dispatch(getAllIncorrectQuestionSuccess(res.data));
+    } catch (e) {
+        dispatch(getAllIncorrectQuestionError());
+    }
+}
+
+export const getAllRandomQuestionTest = async (limit, dispatch) => {
+    dispatch(getAllRandomQuesitonStart());
+    try {
+        const res = await testService.getAllRandomQuestionTestService(limit);
+        dispatch(getAllRandomQuesitonSuccess(res.data));
+    } catch (e) {
+        dispatch(getAllRandomQuesitonError());
     }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import VideoPlayer from './VideoPlayer';
 
 const NewLineText = (props) => {
     const text = props.text;
@@ -26,11 +27,19 @@ const ModalVideo = (props) => {
                     <div className="row">
                         <div className="col-7 d-flex justify-content-center">
                             <div className="w-100">
-                                <video
+                                {/* <video
                                     src={props.video.link}
                                     width="100%"
                                     height="290"
                                     controls="controls"
+                                /> */}
+                                <VideoPlayer 
+                                    detail_id={props.video.id}
+                                    link={props.video.link}
+                                    course_id={props.course_id}
+                                    content_id={props.content_id}
+                                    watched={props.watched}
+                                    setWatched={props.setWatched}
                                 />
                             </div>
                         </div>

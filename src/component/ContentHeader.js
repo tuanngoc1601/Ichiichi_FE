@@ -1,11 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Logo from '../assets/logo_app.png';
 
 const ContentHeader = () => {
+    const navigate = useNavigate();
     return (
         <div className="px-5 border border-1" style={{ height: '100px' }}>
             <div className="row d-flex align-items-center px-5">
-                <div className="d-flex col-3 align-items-center justify-content-start">
+                <div 
+                    className="d-flex col-3 align-items-center justify-content-start" 
+                    role="button" 
+                    onClick={() => navigate("/")}
+                >
                     <div
                         style={{
                             width: '50px',

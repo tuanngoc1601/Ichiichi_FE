@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getWordById, getAllVideoDetails } from '../../redux/apiRequests';
+import { courseService } from '../../service';
 import ContentHeader from '../../component/ContentHeader';
 import WordMeaning from '../../component/user/WordMeaning';
 import ListVideoContent from '../../component/user/ListVideoContent';
@@ -20,11 +21,23 @@ const ContentDetailCourse = () => {
     const [meaning, setMeaning] = useState(wordRedux.mean);
     const [listVideoOfWord, setListVideoOfWord] = useState(videosOfWordRedux);
     const [videoModal, setVideoModal] = useState({});
+    const [videoWatched, setVideoWatched] = useState([]);
+    const [watched, setWatched] = useState(false);
+
+    const getAllVideoWatchedByContentId = async () => {
+        let data = await courseService.getAllVideoWatchedService(parseInt(wordId));
+        setVideoWatched(data.data.data);
+    }
 
     useEffect(() => {
         getWordById(wordId, dispatch);
         getAllVideoDetails(wordId, dispatch);
+        getAllVideoWatchedByContentId();
     }, []);
+
+    useEffect(() => {
+        getAllVideoWatchedByContentId();
+    }, [watched])
 
     useEffect(() => {
         setMeaning(wordRedux.mean);
@@ -46,8 +59,12 @@ const ContentDetailCourse = () => {
                     <ModalVideo
                         show={modalShow}
                         onHide={() => setModalShow(false)}
+                        course_id={id}
+                        content_id={wordId}
                         content={wordContent}
                         video={videoModal}
+                        watched={watched}
+                        setWatched={setWatched}
                     />
                     <WordMeaning
                         course_id={id}
@@ -57,6 +74,7 @@ const ContentDetailCourse = () => {
                         setModalShow={setModalShow} 
                         listVideoOfWord={listVideoOfWord}
                         setVideoModal={setVideoModal}
+                        videoWatched={videoWatched}
                     />
                 </div>
             </div>

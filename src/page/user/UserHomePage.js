@@ -75,12 +75,14 @@ const UserHomePage = () => {
                 <div className="row row-cols-3 mt-2"  style={{ minHeight: '550px' }}>
                     {subset.length > 0 &&
                         subset.map((course, index) => {
-                            const { id, title, description, image } = course;
+                            const { course_id, process, score } = course;
+                            const { title, description, image } = course.Course;
                             return (
                                 <div key={index} className="col d-flex justify-content-center">
                                     <CourseItem
                                         setModalShow={setModalShow}
-                                        id={id} setId={setId}
+                                        id={course_id} setId={setId}
+                                        process={process} score={score}
                                         title={title} setTitle={setTitle}
                                         image={image} setImage={setImage}
                                         description={description} setDescription={setDescription}

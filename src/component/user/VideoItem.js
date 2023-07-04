@@ -7,6 +7,18 @@ const VideoItem = (props) => {
         props.setVideoModal(props.video);
     }
 
+    const checkVideoWatched = () => {
+        let videos = props.videoWatched;
+        let arrDetailId = [];
+        if(videos.length > 0) {
+            videos.forEach(video => {
+                arrDetailId.push(video.detail_id);
+            })
+        }
+        if(arrDetailId.includes(props.video.id)) return true;
+        return false;
+    }
+
     return (
         <div style={{ width: '200px' }}>
             <div 
@@ -23,7 +35,7 @@ const VideoItem = (props) => {
                 />
             </div>
             <div className="mt-1">
-                <p className="text-center">{props.video.title}</p>
+                <p className="text-center">{checkVideoWatched() ? <i className="fas fa-circle text-success"></i> : <i className="far fa-circle"></i>}{props.video.title}</p>
             </div>
         </div>
     )

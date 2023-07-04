@@ -4,6 +4,8 @@ export const testSlide = createSlice({
     name: "tests",
     initialState: {
         allQuestions: [],
+        allIncorrectQuestions: [],
+        allRandomQuestions: [],
         question: {},
         pendding: false,
         error: false
@@ -33,6 +35,32 @@ export const testSlide = createSlice({
             state.pendding = false;
             state.error = false;
             state.question = action.payload.question;
+        },
+
+        getAllIncorrectQuestionStart: (state) => {
+            state.pendding = true;
+        },
+        getAllIncorrectQuestionError: (state) => {
+            state.pendding = false;
+            state.error = true;
+        },
+        getAllIncorrectQuestionSuccess: (state, action) => {
+            state.pendding = false;
+            state.error = false;
+            state.allIncorrectQuestions = action.payload.data;
+        },
+
+        getAllRandomQuesitonStart: (state) => {
+            state.pendding = true;
+        },
+        getAllRandomQuesitonError: (state) => {
+            state.pendding = false;
+            state.error = true;
+        },
+        getAllRandomQuesitonSuccess: (state, action) => {
+            state.pendding = false;
+            state.error = false;
+            state.allRandomQuestions = action.payload.data;
         }
     }
 })
@@ -43,6 +71,12 @@ export const {
     getAllQuestionSuccess,
     getQuestionStart,
     getQuestionError,
-    getQuestionSuccess
+    getQuestionSuccess,
+    getAllIncorrectQuestionStart,
+    getAllIncorrectQuestionError,
+    getAllIncorrectQuestionSuccess,
+    getAllRandomQuesitonStart,
+    getAllRandomQuesitonError,
+    getAllRandomQuesitonSuccess
 } = testSlide.actions;
 export default testSlide.reducer;

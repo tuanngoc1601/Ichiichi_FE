@@ -1,12 +1,13 @@
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllQuestionCourse, getQuestionById } from '../../redux/apiRequests';
+import { getAllIncorrectQuestionTest, getQuestionById } from '../../redux/apiRequests';
 import { testService } from '../../service';
 import ContentHeader from '../../component/ContentHeader';
 import ResultTestModal from '../../component/user/ResultTestModal';
 import Loading from '../../component/Loading';
+
 
 const NewLineText = (props) => {
     const text = props.text;
@@ -14,17 +15,17 @@ const NewLineText = (props) => {
     return newText;
 }
 
-const CourseTest = () => {
-    const { id } = useParams();
+const TestIncorrectQuestion = () => {
+    // const { id } = useParams();
     const dispatch = useDispatch();
     const scrollContainerRef = useRef(null);
     const [activeQuestion, setActiveQuestion] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState('');
     const [correctAnswer, setCorrectAnswer] = useState('');
-    const allQuestionRedux = useSelector(state => state.tests.allQuestions);
+    const allIncorrectQuestionRedux = useSelector(state => state.tests.allIncorrectQuestions);
     const questionRedux = useSelector(state => state.tests.question);
     const pendding = useSelector(state => state.tests.pendding);
-    const [allQuestions, setAllQuestions] = useState(allQuestionRedux);
+    const [allQuestions, setAllQuestions] = useState(allIncorrectQuestionRedux);
     const [question, setQuestion] = useState(questionRedux);
     const [answerIndex, setAnswerIndex] = useState(null);
     const [correctAnswerIndex, setCorrectAnswerIndex] = useState(null);
@@ -39,7 +40,7 @@ const CourseTest = () => {
 
     const getQuestionContent = () => {
         if (allQuestions.length > 0) {
-            getQuestionById(allQuestions[activeQuestion].id, dispatch);
+            getQuestionById(allQuestions[activeQuestion].test_id, dispatch);
         }
     }
 
@@ -108,13 +109,13 @@ const CourseTest = () => {
     }
 
     useEffect(() => {
-        getAllQuestionCourse(id, dispatch);
+        getAllIncorrectQuestionTest(5, dispatch);
     }, []);
 
     useEffect(() => {
-        setAllQuestions(allQuestionRedux);
+        setAllQuestions(allIncorrectQuestionRedux);
         setQuestion(questionRedux);
-    }, [allQuestionRedux, questionRedux]);
+    }, [allIncorrectQuestionRedux, questionRedux]);
 
     useEffect(() => {
         getQuestionContent();
@@ -157,14 +158,13 @@ const CourseTest = () => {
                 onHide={() => setModalShow(false)}
                 result={result}
                 total_questions={allQuestions.length}
-                course_id={id}
-                type={"correct"}
+                type={"incorrect"}
             />
             <div className="container">
                 <div className="w-75 mx-auto">
                     <div className="row">
                         <div className="col-12 d-flex justify-content-start my-4">
-                            <Link to={`/course/${id}`}>
+                            <Link to="/">
                                 <button
                                     className="border-0 px-3 py-2 rounded"
                                     type="button"
@@ -234,4 +234,4 @@ const CourseTest = () => {
     )
 }
 
-export default CourseTest
+export default TestIncorrectQuestion
