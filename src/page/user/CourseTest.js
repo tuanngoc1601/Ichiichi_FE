@@ -43,6 +43,14 @@ const CourseTest = () => {
         }
     }
 
+    const handlePrevQuestion = () => {
+        setActiveQuestion(prev => prev - 1);
+        setAnswerIndex(null);
+        setCorrectAnswerIndex(null);
+        setExplanation('');
+        setSelectedAnswer('');
+    }
+
     const handleNextQuestion = () => {
         if (activeQuestion !== allQuestions.length - 1) {
             setActiveQuestion(prev => prev + 1);
@@ -215,7 +223,16 @@ const CourseTest = () => {
                         </div>
 
                         <div className="row mt-4">
-                            <div className="col-12 d-flex justify-content-end">
+                            <div className="col-12 d-flex justify-content-between">
+                                <button
+                                    className="border-0 px-4 py-2 rounded"
+                                    type="button"
+                                    style={{ backgroundColor: '#D7D7D7' }}
+                                    disabled={activeQuestion === 0 ? true : false}
+                                    onClick={() => handlePrevQuestion()}
+                                >
+                                    <i className="fas fa-arrow-left fs-5"></i>
+                                </button>
                                 <button
                                     className="border-0 px-4 py-2 rounded"
                                     type="button"

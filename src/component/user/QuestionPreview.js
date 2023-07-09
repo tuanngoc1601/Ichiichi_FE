@@ -32,6 +32,7 @@ const QuestionPreview = (props) => {
                     <h5 className="fw-bold mt-2">答えは？選んでください。</h5>
                     <p className="fw-bold">正解：&nbsp;{props.test.Test.right_answer}</p>
                     {!props.test.is_correct && <p className="fw-bold">選択した答え：&nbsp;{props.test.answer}</p>}
+                    <p className="fw-bold">コース：&nbsp;{props.test.Test.Course.title}</p>
                     <div className="row d-flex px-2">
                         <p className="col-1 p-0 text-end text-danger fw-bold">回答：</p>
                         <p className="col-11">{props.test.Test.explanation}</p>

@@ -27,12 +27,6 @@ const ModalVideo = (props) => {
                     <div className="row">
                         <div className="col-7 d-flex justify-content-center">
                             <div className="w-100">
-                                {/* <video
-                                    src={props.video.link}
-                                    width="100%"
-                                    height="290"
-                                    controls="controls"
-                                /> */}
                                 <VideoPlayer 
                                     detail_id={props.video.id}
                                     link={props.video.link}

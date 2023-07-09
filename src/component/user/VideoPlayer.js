@@ -4,7 +4,6 @@ import { courseService } from '../../service';
 const VideoPlayer = (props) => {
     const videoRef = useRef(null);
     const [watchedTime, setWatchedTime] = useState(0);
-    // const [watched, setWatched] = useState(false);
 
     useEffect(() => {
         const videoElement = videoRef.current;
@@ -24,6 +23,8 @@ const VideoPlayer = (props) => {
                 };
                 const response = await courseService.createVideoWatchedSerivce(data);
                 console.log(response.data);
+                const res = await courseService.updateProgressCourseService(parseInt(props.course_id));
+                console.log(res.data);
             }
         };
 

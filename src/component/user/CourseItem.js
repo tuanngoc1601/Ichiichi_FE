@@ -27,19 +27,26 @@ const CourseItem = (props) => {
             </div>
             <div className="my-1">
                 <p className="fs-5 mb-2">{props.title}</p>
-                <div>
-                    <input
-                        type="range"
-                        className="w-75 mx-auto"
-                        min="0"
-                        max="100"
-                        value={props.process}
-                        // disabled
-                    />
+                <div className="progress mb-3 mx-auto position-relative" style={{ width: '85%' }}>
+                    <div 
+                        className="progress-bar"
+                        role="progressbar" 
+                        style={{ width: `${props.process}%`, backgroundColor: '#61E686', color: '#000000' }} 
+                        aria-valuenow={props.process} 
+                        aria-valuemin="0" 
+                        aria-valuemax="100"
+                    >
+                    </div>
+                    <small 
+                        className="justify-content-center align-items-center h-100 d-flex position-absolute w-100" 
+                        style={{ fontSize: '0.85rem' }}
+                    >
+                        {props.process}%
+                    </small>
                 </div>
                 <p>
                     テスト点数:&nbsp;
-                    <span 
+                    <span
                         className="py-1 px-2 rounded"
                         style={{ backgroundColor: props.score >= 70 * 0.6 ? '#20E757' : '#F54646' }}
                     >
