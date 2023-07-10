@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../axios";
 
 export const getAllQuestionService = (id) => {
     return axios.get(`/api/get-all-question?id=${id}`);
