@@ -80,7 +80,7 @@ const TestIncorrectQuestion = () => {
         if (selectedAnswer === '') {
             setSelectedAnswer(answer);
             setAnswerIndex(index);
-            const correctAnswer = await testService.getCorrectAnswerService(allQuestions[activeQuestion].id);
+            const correctAnswer = await testService.getCorrectAnswerService(allQuestions[activeQuestion].test_id);
             let data = {
                 user_id: 1,
                 test_id: idTest
