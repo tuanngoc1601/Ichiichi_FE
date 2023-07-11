@@ -105,11 +105,13 @@ const TestRandomQuestion = () => {
 
     const onSelectedAnswer = (index) => {
         let bg = '';
+        if (answerIndex === null || correctAnswer === null) {
+            return '';
+        }
         if (answerIndex === correctAnswerIndex) {
             if (index === answerIndex) bg = "bg-correct-answer";
         } else {
             if (index === answerIndex) bg = "bg-incorrect-answer";
-            if (index === correctAnswerIndex) bg = "bg-correct-answer";
         }
         return bg;
     }
