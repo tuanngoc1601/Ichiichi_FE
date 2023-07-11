@@ -50,7 +50,7 @@ const CourseItem = (props) => {
                         className="py-1 px-2 rounded"
                         style={{ backgroundColor: props.score >= 70 * 0.6 ? '#20E757' : '#F54646' }}
                     >
-                        {props.score}/70
+                        {props.score}/50
                     </span>
                 </p>
                 <button
