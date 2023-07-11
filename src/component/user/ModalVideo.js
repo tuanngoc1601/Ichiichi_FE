@@ -19,7 +19,7 @@ const ModalVideo = (props) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    近所と「{props.content}」
+                    「{props.content}」
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
